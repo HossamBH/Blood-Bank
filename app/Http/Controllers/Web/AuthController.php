@@ -15,16 +15,14 @@ use App\Http\Requests\Web\LoginRequest;
 
 class AuthController extends Controller
 {
-    
     public function signup()
     {
     	$governorates = Governorate::all();
         return view('site.signup', compact('governorates'));
     }
 
-    public function signupSave(SignupRequest $request)
+    public function signupSave(Request $request)
     {
-        
         $request->merge(['password' => bcrypt($request->password)]);
         $client = Client::create($request->all());
 
@@ -51,8 +49,8 @@ class AuthController extends Controller
             } else {
                 flash()->error('يوجد خطأ فى بيانات الدخول');
                 return back();
+        return view('site.login');
             }
-
         }
 
         flash()->error('لا يوجد حساب مرتبط بهذا الرقم');

@@ -20,7 +20,7 @@ class DonationController extends Controller
         return view('site.donation-details', compact('donation'));
     }
 
-    public function donations(DonationCreateRequest $request)
+    public function donations(Request $request)
     {
         $donations = DonationRequest::where(function($q)use($request){
 
